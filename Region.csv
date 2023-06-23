@@ -1,0 +1,17 @@
+id_Region;Nombre_Region;Poblacion;Superficie;Id_Pais
+1;Region de Tarapaca;19828563; 42225.8;1
+2;Region de Antofagasta;709637;126049.1;1
+3;Region de Atacama;318004;75176;1
+4;Region de Coquimbo;858769;40580;1
+5;Region de Valparaiso;1995538;16396;1
+6;Region del Libertador General Bernardo OHiggins;1009552;16387;1
+7;Region del Maule;1153043;30269.1;1
+8;Region del Bio-bio;1676269;23890.2;1
+9;Region de La Araucanoa;1024029;31858;1
+10;Region de Los Lagos;902510;48584;1
+11;Region Aysen del General Carlos Ibanez del Campo;108047;108494;1
+12;Region de Magallanes y Antartica Chilena;181143;132.297;1
+13;Region Metropolitana de Santiago;8310984;15403.2;1
+14;Region de Los Rios;409559;18429.5;1
+15;Region de Arica y Parinacota;257722;16873;1
+16;Region de Nuble;517060;13178.5;1
