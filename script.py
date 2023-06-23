@@ -63,10 +63,10 @@ def cargaEducacion():
             linea = linea.rstrip()#Remueve el salto de linea
             lista = linea.split(';')
             idComuna = int(lista[0])
-            comuna = str(lista[1])
-            establec = str(lista[2])
-            pertenencia = str(lista[3])
-            direc = str(lista[4])
+            idEst = int(lista[1])
+            nombreEst = str(lista[2])
+            lat = float(lista[3])
+            lon = float(lista[4])
             print(f"")
 
 def cargaSeguridad():
