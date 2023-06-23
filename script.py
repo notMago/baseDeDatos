@@ -1,3 +1,4 @@
+#Este script se encuentra en github.
 def cargaRegion():
     with open('Region.csv', 'r') as file:
         next(file, None) #salta la primera linea que es texto que no queremos.
@@ -38,6 +39,9 @@ def cargaTrabajo():
             totalEmp = int(lista[5])
             totalDesemp=int(lista[6])
             print(f"Comuna: {comuna} con {mujOcup} mujeres ocupadas, {mujDeso} mujeres desocupadas {homOcup} hombres ocupados y {homDeso} hombres desocupados. Un total de {totalEmp} personas empleadas y {totalDesemp} personas desempleadas")
+
+def cargaSalud():
+    print('Test.')
 
 def main():
     cargaRegion()
