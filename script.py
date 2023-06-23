@@ -44,7 +44,7 @@ def cargaTrabajo():
             print(f"Comuna: {comuna} con {mujOcup} mujeres ocupadas, {mujDeso} mujeres desocupadas {homOcup} hombres ocupados y {homDeso} hombres desocupados. Un total de {totalEmp} personas empleadas y {totalDesemp} personas desempleadas")
 
 def cargaSalud():
-    with open('Trabajo.csv', 'r') as file:
+    with open('Salud.csv', 'r') as file:
         next(file, None)
         for linea in file:
             linea = linea.rstrip()#Remueve el salto de linea
@@ -57,7 +57,7 @@ def cargaSalud():
             print(f"id: {idComuna}, comuna: {comuna}, establecimiento {establec} es {pertenencia}, en {direc}")
 
 def cargaEducacion():
-    with open('Trabajo.csv', 'r') as file:
+    with open('Educacion.csv', 'r') as file:
         next(file, None)
         for linea in file:
             linea = linea.rstrip()#Remueve el salto de linea
@@ -68,6 +68,21 @@ def cargaEducacion():
             pertenencia = str(lista[3])
             direc = str(lista[4])
             print(f"")
+
+def cargaSeguridad():
+    with open('Seguridad.csv', 'r') as file:
+        next(file, None)
+        for linea in file:
+            linea = linea.rstrip()#Remueve el salto de linea
+            lista = linea.split(';')
+            idComuna = int(lista[0])
+            idComisaria = int(lista[1])
+            nombreComi = str(lista[2])
+            direc = str(lista[3])
+            fono = str(lista[4])
+            tipo = str(lista[5])
+            print(f"")
+
 
 def main():
     cargaRegion()
