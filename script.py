@@ -1,4 +1,7 @@
 #Este script se encuentra en github.
+#Pais no está dentro de este script ya que solo era 1 linea de datos. (SOLO CHILE)
+#De todas maneras está dentro de la base de datos.
+
 def cargaRegion():
     with open('Region.csv', 'r') as file:
         next(file, None) #salta la primera linea que es texto que no queremos.
@@ -52,6 +55,19 @@ def cargaSalud():
             pertenencia = str(lista[3])
             direc = str(lista[4])
             print(f"id: {idComuna}, comuna: {comuna}, establecimiento {establec} es {pertenencia}, en {direc}")
+
+def cargaEducacion():
+    with open('Trabajo.csv', 'r') as file:
+        next(file, None)
+        for linea in file:
+            linea = linea.rstrip()#Remueve el salto de linea
+            lista = linea.split(';')
+            idComuna = int(lista[0])
+            comuna = str(lista[1])
+            establec = str(lista[2])
+            pertenencia = str(lista[3])
+            direc = str(lista[4])
+            print(f"")
 
 def main():
     cargaRegion()
