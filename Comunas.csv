@@ -6,7 +6,7 @@ Id_Comuna;Nombre_Comuna;Superficie;Poblacion;Id_Region
 1101;Iquique;2242.1;223463;1
 1107;Alto Hospicio;572.9;129999;1
 1401;Pozo Almonte;13765.8;17395;1
-1402;Camiña;2200.2;1375;1
+1402;Camina;2200.2;1375;1
 1403;Colchane;4015.6;1583;1
 1404;Huara;10474.6;3000;1
 1405;Pica;8934.3;5958;1
@@ -15,7 +15,7 @@ Id_Comuna;Nombre_Comuna;Superficie;Poblacion;Id_Region
 2103;Sierra Gorda;12886;1746;2
 2104;Taltal;20405.1;13657;2
 2201;Calama;15596.9;190336;2
-2202;Ollagüe;2964;287;2
+2202;Ollague;2964;287;2
 2203;San Pedro de Atacama;23439;10434;2
 2301;Tocopilla;4038.8;28079;2
 2302;Maria Elena;12197;6814;2
@@ -278,7 +278,7 @@ Id_Comuna;Nombre_Comuna;Superficie;Poblacion;Id_Region
 11202;Cisnes;16093;5828;11
 11203;Guaitecas;620.6;1599;11
 11301;Cochrane;8599.5;3685;11
-11302;O'Higgins;8182.5;661;11
+11302;OHiggins;8182.5;661;11
 11303;Tortel;19710.6;572;11
 11401;Chile Chico;5737.1;5121;11
 11402;Rio Ibanez;5997.2;2699;11
