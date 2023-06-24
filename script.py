@@ -3,7 +3,6 @@ import pymysql
 from mysql.connector import cursor
 from mysql.connector.constants import CNX_POOL_ARGS
 #Este script se encuentra en github.
-#De todas maneras está dentro de la base de datos.
 def accedeMariadb():
     usuario = input("Ingrese su usuario local de MariaDB: ")
     contraseña = input ("Ingrese la contraseña correspondiente a su usario de MariaDB: ")
@@ -104,21 +103,21 @@ def cargaTrabajo(usuario, contraseña):
     )
     with open('Trabajo.csv', 'r') as file:
         next(file, None)
-        aidi=0
+        #aidi=0
         for linea in file:
-            aidi+=1
+            #aidi+=1
             linea = linea.rstrip()#Remueve el salto de linea
             lista = linea.split(';')
             comuna = int(lista[0])
-            mujOcup = int(lista[1])
-            mujDeso = int(lista[2])
-            homOcup = int(lista[3])
-            homDeso = int(lista[4])
+            mujEmp = int(lista[1])
+            mujDesemp = int(lista[2])
+            homEmp = int(lista[3])
+            homDesemp = int(lista[4])
             totalEmp = int(lista[5])
             totalDesemp=int(lista[6])
             mycursor = mydb.cursor()
-            mycursor.execute("INSERT IGNORE INTO Trabajo (Id_trabajador, Empleados, Desempleados, Id_Comuna)" 
-                            f"VALUES ({aidi}, {totalEmp}, {totalDesemp}, {comuna})")
+            mycursor.execute("INSERT IGNORE INTO Trabajo (Empleados, Desempleados,mujOcup,mujDeso,homOcup,homDeso, Id_Comuna)" 
+                            f"VALUES ({totalEmp}, {totalDesemp},{mujEmp},{mujDesemp},{homEmp},{homDesemp}, {comuna})")
             #print(f"Comuna: {comuna} con {mujOcup} mujeres ocupadas, {mujDeso} mujeres desocupadas {homOcup} hombres ocupados y {homDeso} hombres desocupados. Un total de {totalEmp} personas empleadas y {totalDesemp} personas desempleadas")
         mydb.commit()
         print("Carga de trabajo a la base de datos lista")
@@ -143,9 +142,10 @@ def cargaSalud(usuario, contraseña):
             pertenencia = str(lista[3])
             direc = str(lista[4])  # Escapa las comillas simples
             mycursor = mydb.cursor()
-            query = "INSERT IGNORE INTO Salud (Id_Salud, Nombre_CA, Dirección) VALUES (%s, %s, %s)"
-            values = (aidisalud, establec, direc)
+            query = "INSERT IGNORE INTO Salud (idComuna,idSalud, Nombre_CA, pertenencia, Dirección) VALUES (%s, %s, %s)"
+            values = (idComuna,aidisalud, establec, pertenencia, direc)
             mycursor.execute(query, values)
+            #Id_Comuna;Comuna;Establecimiento;Pertenecencia;Direccion;
             #print(f"id: {idComuna}, comuna: {comuna}, establecimiento: {establec} es {pertenencia}, en {direc}")
         mydb.commit()
         print("Carga de salud a la base de datos lista")
@@ -159,9 +159,9 @@ def cargaEducacion(usuario, contraseña):
     )
     with open('Educacion.csv', 'r') as file:
         next(file, None)
-        aidi = 0
+        #aidi = 0
         for linea in file:
-            aidi += 1
+            #aidi += 1
             linea = linea.rstrip()  # Remueve el salto de línea
             lista = linea.split(';')
             idComuna = int(lista[0])
@@ -170,8 +170,8 @@ def cargaEducacion(usuario, contraseña):
             lat = float(lista[3].replace(',', '.'))  # Reemplaza la coma por un punto
             lon = float(lista[4].replace(',', '.'))  # Reemplaza la coma por un punto
             mycursor = mydb.cursor()
-            mycursor.execute("INSERT IGNORE INTO Educación (Id_Educación, Nombre_est, Latitud, Longitud) "
-                    f"VALUES ({aidi}, '{nombreEst}', {lat}, {lon})")
+            mycursor.execute("INSERT IGNORE INTO Educación (Id_Educación, Nombre_est, Latitud, Longitud, FK_idComuna) "
+                    f"VALUES ({idEst}, '{nombreEst}', {lat}, {lon}), {idComuna}")
         mydb.commit()
         print("Carga de educación a la base de datos lista")
 
@@ -196,8 +196,8 @@ def cargaSeguridad(usuario, contraseña):
             fono = str(lista[4])
             tipo = str(lista[5])
             mycursor = mydb.cursor()
-            mycursor.execute("INSERT IGNORE INTO Seguridad(Id_Recinto, Nombre_recinto, Dirección, Fono)"
-                    f"VALUES ({idComisaria}, '{nombreComi}', '{direc}', '{fono}')")
+            mycursor.execute("INSERT IGNORE INTO Seguridad(Id_Recinto, Nombre_recinto, Dirección, Fono, FK_idComuna)"
+                    f"VALUES ({idComisaria}, '{nombreComi}', '{direc}', '{fono}', {idComuna})")
     mydb.commit()
     print("Carga de seguridad a la base de datos lista")
 
@@ -217,7 +217,7 @@ def cargaTipo_est(usuario, contraseña):
             lista = linea.split(';')
             descrip = str(lista[5])
             mycursor = mydb.cursor()
-            mycursor.execute("INSERT IGNORE INTO Tipo_est (Id_est, Descripción) "
+            mycursor.execute("INSERT IGNORE INTO Tipo_est (Id_est, Descripción, FK_idC) "
                             f"VALUES ({aidi}, '{descrip}')")  # Agrega el paréntesis de cierre y las comillas simples
         mydb.commit()
         print("Carga de tipo_est a la base de datos lista")
@@ -244,33 +244,6 @@ def cargaTipo_CA(usuario, contraseña):
         mydb.commit()
         print("Carga de Tipo_CA a la base de datos lista")
 
-'''def cargaGenero(usuario, contraseña):
-    mydb = mysql.connector.connect(
-        host="localhost",
-        user=usuario,
-        password=contraseña,
-        database="DB_parteB"
-    )
-    with open('Trabajo.csv', 'r') as file:
-        next(file, None)
-        aidi=0
-        for linea in file:
-            aidi+=1
-            linea = linea.rstrip()#Remueve el salto de linea
-            lista = linea.split(';')
-            comuna = int(lista[0])
-            mujOcup = int(lista[1])
-            mujDeso = int(lista[2])
-            homOcup = int(lista[3])
-            homDeso = int(lista[4])
-            totalEmp = int(lista[5])
-            totalDesemp=int(lista[6])
-            mycursor = mydb.cursor()
-            mycursor.execute("INSERT IGNORE INTO Género(Id_gen, Descripción)" 
-                            f"VALUES ({aidi}, {totalEmp}, {totalDesemp}, {comuna})")
-        mydb.commit()
-        print("Carga de género a la base de datos lista")'''
-
 def cargaTipo_comisaria(usuario, contraseña):
     mydb = mysql.connector.connect(
         host="localhost",
@@ -293,7 +266,47 @@ def cargaTipo_comisaria(usuario, contraseña):
     mydb.commit()
     print("Carga de Tipo_comisaria a la base de datos lista")
 
-#AQUI DEBERÍA IR LA FUNCION CARGAHAY PARA LA RELACIÓN NN PERO NO SE HACERLA
+'''def cargaGenero(usuario, contraseña):
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user=usuario,
+        password=contraseña,
+        database="DB_parteB"
+    )
+    with open('Trabajo.csv', 'r') as file:
+        next(file, None)
+        aidi=0
+        for linea in file:
+            aidi+=1
+            linea = linea.rstrip()#Remueve el salto de linea
+            lista = linea.split(';')
+            mujOcup = int(lista[1])
+            mujDeso = int(lista[2])
+            homOcup = int(lista[3])
+            homDeso = int(lista[4])
+            totalmuj=
+            totalhom=
+            mycursor = mydb.cursor()
+            mycursor.execute("INSERT IGNORE INTO Género(Id_gen, Descripción)" 
+                            f"VALUES ({aidi}, {0=muj;1=hom})")
+        mydb.commit()
+        print("Carga de género a la base de datos lista")'''
+
+'''def cargaHay():
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user=usuario,
+        password=contraseña,
+        database="DB_parteB"
+    )
+    with open('Trabajo.csv', 'r') as file:
+        next(file, None)
+        aidi=0
+        for linea in file:
+            aidi+=1
+        mycursor = mydb.cursor()
+        mycursor.execute("INSERT IGNORE INTO HAY(Id_trabajador,Id_gen)"
+            f"VALUES ({aidi},'{id_gen}')")'''
 
 def main():
     usuario, contraseña = accedeMariadb()
