@@ -24,6 +24,6 @@ create_tables_query = ("CREATE TABLE Pais(Id_pais INT PRIMARY KEY,Nombre_pais ch
                         "CREATE TABLE Tipo_CA(Id_CA int PRIMARY KEY, Descripción char, Fk_idSalud int, FOREIGN KEY (Fk_idSalud) REFERENCES Salud(idSalud));",
                         "CREATE TABLE Tipo_Comisaria(Id_Comi int PRIMARY KEY, Descripción char, Fk_idRecinto int, FOREIGN KEY (Fk_idRecinto) REFERENCES Seguridad(id_Recinto));")
 # Ejecuta en mariadb la sintaxis sql 
-mycursor.execute(create_database_query)
+mycursor.execute(create_tables_query)
 mydb.commit()
 mycursor.close()
