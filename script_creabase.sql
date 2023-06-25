@@ -4,7 +4,7 @@ USE DB_parteB;
 --Creación de tablas sólo con claves primarias
 CREATE TABLE if NOT EXISTS País(Id_pais INT PRIMARY KEY, Nombre_Pais VARCHAR(50), Población INT, Superficie FLOAT, Continente VARCHAR(50), Id_región INT);
 
-CREATE TABLE if NOT EXISTS Región(Id_region INT PRIMARY KEY, Nombre_Región VARCHAR(50), Población INT, Superficie FLOAT, Id_pais INT);
+CREATE TABLE if NOT EXISTS Región(Id_region INT PRIMARY KEY, Nombre_Región VARCHAR(50), Poblacion INT, Superficie FLOAT, Id_pais INT);
 
 CREATE TABLE if NOT EXISTS Comuna(Id_Comuna INT PRIMARY KEY, Nombre_Comuna VARCHAR(50), Superficie FLOAT, Población INT, Id_región INT);
 
