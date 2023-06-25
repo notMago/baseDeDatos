@@ -2,13 +2,13 @@ CREATE DATABASE if NOT EXISTS DB_parteB;
 
 USE DB_parteB;
 --Creación de tablas sólo con claves primarias
-CREATE TABLE if NOT EXISTS País(Id_pais INT PRIMARY KEY, Nombre_Pais VARCHAR(50), Población INT, Superficie FLOAT, Continente VARCHAR(50), Id_región INT);
+CREATE TABLE if NOT EXISTS Pais(Id_pais INT PRIMARY KEY, Nombre_Pais VARCHAR(50), Población INT, Superficie FLOAT, Continente VARCHAR(50), Id_región INT);
 
-CREATE TABLE if NOT EXISTS Región(Id_region INT PRIMARY KEY, Nombre_Región VARCHAR(50), Poblacion INT, Superficie FLOAT, Id_pais INT);
+CREATE TABLE if NOT EXISTS Region(Id_region INT PRIMARY KEY, Nombre_Region VARCHAR(50), Poblacion INT, Superficie FLOAT, Id_pais INT);
 
-CREATE TABLE if NOT EXISTS Comuna(Id_Comuna INT PRIMARY KEY, Nombre_Comuna VARCHAR(50), Superficie FLOAT, Población INT, Id_región INT);
+CREATE TABLE if NOT EXISTS Comuna(Id_Comuna INT PRIMARY KEY, Nombre_Comuna VARCHAR(50), Superficie FLOAT, Poblacion INT, Id_region INT);
 
-CREATE TABLE if NOT EXISTS Educación(Id_Educación INT PRIMARY KEY, Nombre_est VARCHAR(50), Latitud FLOAT, Longitud FLOAT, Id_est INT, Id_Comuna INT);
+CREATE TABLE if NOT EXISTS Educacion(Id_Educacion INT PRIMARY KEY, Nombre_est VARCHAR(50), Latitud FLOAT, Longitud FLOAT, Id_est INT, Id_Comuna INT);
 
 CREATE TABLE if NOT EXISTS Salud(Id_Salud INT PRIMARY KEY, Nombre_CA VARCHAR(200), Dirección VARCHAR(100), Id_CA INT, Id_Comuna INT);
 
@@ -16,11 +16,9 @@ CREATE TABLE if NOT EXISTS Trabajo(Id_trabajador INT PRIMARY KEY, Empleados INT,
 
 CREATE TABLE if NOT EXISTS Seguridad(Id_Recinto INT PRIMARY KEY, Nombre_recinto VARCHAR(50), Dirección VARCHAR(200), Fono BIGINT, Id_Comi INT,Id_Comuna INT);
 
-CREATE TABLE if NOT EXISTS Tipo_est(Id_est INT PRIMARY KEY, Descripción VARCHAR (50), Id_Educación INT);
+CREATE TABLE if NOT EXISTS Tipo_est(Id_est INT PRIMARY KEY, Descripcion VARCHAR (50), Id_Educación INT);
 
-CREATE TABLE if NOT EXISTS Tipo_CA(Id_CA INT PRIMARY KEY, Descripción VARCHAR(50), Id_Salud INT);
-
-CREATE TABLE if NOT EXISTS Género(Id_gen INT PRIMARY KEY, Descripción VARCHAR(50));
+CREATE TABLE if NOT EXISTS Tipo_CA(Id_CA INT PRIMARY KEY, Descripcion VARCHAR(50), Id_Salud INT);
 
 CREATE TABLE if NOT EXISTS Tipo_Comisaria(Id_Comi INT PRIMARY KEY, Descripción VARCHAR(50), Id_Recinto INT);
 
