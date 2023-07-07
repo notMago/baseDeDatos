@@ -14,7 +14,7 @@ CREATE TABLE if NOT EXISTS Salud(Id_Salud INT PRIMARY KEY, Nombre_CA VARCHAR(200
 
 CREATE TABLE if NOT EXISTS Trabajo(Id_trabajador INT PRIMARY KEY, Empleados INT, Desempleados INT, mujEmp INT, mujDesemp INT, homEmp INT, homDesemp INT, Id_Comuna INT);
 
-CREATE TABLE if NOT EXISTS Seguridad(Id_Recinto INT PRIMARY KEY, Nombre_recinto VARCHAR(50), Direccion VARCHAR(200), Fono BIGINT, INT,Id_Comuna INT);
+CREATE TABLE if NOT EXISTS Seguridad(Id_Recinto INT PRIMARY KEY, Nombre_recinto VARCHAR(50), Direccion VARCHAR(200), Fono BIGINT, Id_Comi INT,Id_Comuna INT);
 
 CREATE TABLE if NOT EXISTS Tipo_est(Id_est INT PRIMARY KEY, Descripcion VARCHAR (50), Id_Educacion INT);
 
